@@ -52,6 +52,7 @@ namespace tracking
 
     bool is_approximate_sync_ = true;
     std::string params_path_ = "~/catkin_ws/src/tracking/config/params.yml";
+    cv::TrackerKCF::Params params;
 
     boost::shared_ptr<
       message_filters::Synchronizer<SyncPolicy> > sync_;

@@ -1,7 +1,7 @@
 %YAML:1.0
 ---
 my_object:
-   detect_thresh: 1.0000000000000000e-02
+   detect_thresh: 1.0000000000000000e-06
    sigma: 2.0000000298023224e-01
    lambda: 9.9999997473787516e-05
    interp_factor: 7.5000002980232239e-02

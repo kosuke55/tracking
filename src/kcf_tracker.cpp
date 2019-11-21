@@ -5,21 +5,23 @@ namespace tracking
 {
 void KcfTracker::onInit()
 {
-
+  params.detect_thresh = 0.0001f;
   nh_ = getNodeHandle();
   pnh_ = getPrivateNodeHandle();
   pnh_.getParam("approximate_sync", is_approximate_sync_);
   pnh_.getParam("params_path", params_path_);
   ROS_INFO("params_path_:%s", params_path_.c_str());
-  tracker_ = cv::TrackerKCF::create();
+  tracker_ = cv::TrackerKCF::create(params);
   cv::FileStorage fs(params_path_, cv::FileStorage::READ);
   cv::FileNode features = fs["my_object"];
-  tracker_->read(features);
-  // tracker_->save("/home/kosuke/catkin_ws/src/tracking/launch/fuga.yml");
+  // tracker_->read(features);
+  tracker_->save("/home/kosuke/catkin_ws/src/tracking/launch/fuga.yml");
 
   image_pub_ = pnh_.advertise<sensor_msgs::Image>("output_image", 1);
+  // sub_image_.subscribe(pnh_,
+  //                      "/head_mount_kinect/hd/image_color_rect_repub_desktop", 1);
   sub_image_.subscribe(pnh_,
-                       "/head_mount_kinect/hd/image_color_rect_repub_desktop", 1);
+                       "/apply_mask_image_in_gripper/output", 1);
   sub_boxes_.subscribe(pnh_,
                        "/mask_rcnn_instance_segmentation/output/rects", 1);
   if (is_approximate_sync_)
@@ -46,10 +48,8 @@ void KcfTracker::onInit()
 
 void KcfTracker::load_image(cv::Mat& image, const sensor_msgs::Image::ConstPtr& image_msg)
 {
-  ROS_INFO("load");
   try
   {
-    ROS_INFO("load1");
     cv_bridge::CvImagePtr cv_image =
       cv_bridge::toCvCopy(image_msg, "bgr8");
     image = cv_image->image;
@@ -65,6 +65,7 @@ void KcfTracker::callback(const sensor_msgs::Image::ConstPtr& raw_image_msg,
   header_ = raw_image_msg->header;
   image_.release();
   load_image(image_, raw_image_msg);
+  std::cout << params.detect_thresh << std::endl;
   auto rects = detected_rects->rects;
   if (rects.size() != 0)
   {
@@ -73,13 +74,14 @@ void KcfTracker::callback(const sensor_msgs::Image::ConstPtr& raw_image_msg,
                       rects[0].y - 10,
                       rects[0].width + 20,
                       rects[0].height + 20);
+    tracker_ = cv::TrackerKCF::create(params);
     tracker_->init(image_, roi_);
-    // missing_ = ! tracker_->update(image_, roi_);
+    missing_ = ! tracker_->update(image_, roi_);
     cv::rectangle(image_, roi_,
                   CV_RGB(0,255,0), 2);
     cv::putText(image_, "redetect", cv::Point(50,50),
                 cv::FONT_HERSHEY_SIMPLEX, 3, cv::Scalar(0,0,200), 2, CV_AA);
-    // missing_ = ! tracker_->update(image_, roi_);
+    // missing_ = false;
   }
   else if (! missing_)
   {
