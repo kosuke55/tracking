@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<package format="1">
+  <name>tracking</name>
+  <version>0.1.0</version>
+  <description>The tracking package</description>
+  <maintainer email="takeuchi@jsk.imi.i.u-tokyo.ac.jp">kosuke</maintainer>
+  <license>BSD</license>
+
+  <!-- <build_depend>cv_bridge</build_depend> -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- <build_depend>roscpp</build_depend> -->
+  <!-- <build_depend>rospy</build_depend> -->
+  <!-- <build_depend>std_msgs</build_depend> -->
+  <!-- <build_depend>nodelet</build_depend> -->
+
+  <!-- <build_export_depend>roscpp</build_export_depend> -->
+  <!-- <build_export_depend>rospy</build_export_depend> -->
+  <!-- <build_export_depend>std_msgs</build_export_depend> -->
+
+  <!-- <exec_depend>nodelet</exec_depend> -->
+  <!-- <exec_depend>roscpp</exec_depend> -->
+  <!-- <exec_depend>rospy</exec_depend> -->
+  <!-- <exec_depend>std_msgs</exec_depend> -->
+
+  <build_depend>cv_bridge</build_depend>
+  <build_depend>image_transport</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>nodelet</build_depend>
+  <build_depend>autoware_msgs</build_depend>
+
+  <run_depend>cv_bridge</run_depend>
+  <run_depend>image_transport</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>nodelet</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+  <export>
+    <nodelet plugin="${prefix}/plugins/tracking.xml"/>
+  </export>
+
+</package>

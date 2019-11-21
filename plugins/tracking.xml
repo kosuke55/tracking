@@ -1,0 +1,10 @@
+<library path="lib/libtracking" >
+
+  <class name="tracking/KcfTracker"
+         type="tracking::KcfTracker"
+         base_class_type="nodelet::Nodelet">
+    <description>
+    </description>
+  </class>
+
+</library>

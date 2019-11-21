@@ -1,0 +1,18 @@
+<launch>
+  <node name="kcf_tracker"
+        pkg="nodelet" type="nodelet"
+        output="screen"
+        args="standalone tracking/KcfTracker">
+    <rosparam subst_value="true">
+      params_path: $(find tracking)/config/params.yml
+    </rosparam>
+  </node>
+
+  <!-- <node pkg="nodelet" type="nodelet" args="manager" -->
+  <!--       name="nodelet_manager" output="screen" /> -->
+
+  <!-- <node pkg="nodelet" type="nodelet" args="load tracking/KcfTracker nodelet_manager" -->
+  <!--       name="kcf_tracker" output="screen"> -->
+  <!-- </node> -->
+
+</launch>
