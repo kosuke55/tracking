@@ -79,8 +79,8 @@ void KcfTracker::callback(const sensor_msgs::Image::ConstPtr& raw_image_msg,
     missing_ = ! tracker_->update(image_, roi_);
     cv::rectangle(image_, roi_,
                   CV_RGB(0,255,0), 2);
-    cv::putText(image_, "redetect", cv::Point(50,50),
-                cv::FONT_HERSHEY_SIMPLEX, 3, cv::Scalar(0,0,200), 2, CV_AA);
+    cv::putText(image_, "redetect", cv::Point(10,300),
+                cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0,0,200), 2, CV_AA);
     // missing_ = false;
   }
   else if (! missing_)
@@ -89,15 +89,15 @@ void KcfTracker::callback(const sensor_msgs::Image::ConstPtr& raw_image_msg,
     missing_ = ! tracker_->update(image_, roi_);
     cv::rectangle(image_, roi_,
                   CV_RGB(0,255,0), 2);
-    cv::putText(image_, "tracking", cv::Point(50,50),
-                cv::FONT_HERSHEY_SIMPLEX, 3, cv::Scalar(0,0,200), 2, CV_AA);
+    cv::putText(image_, "tracking", cv::Point(10,300),
+                cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0,0,200), 2, CV_AA);
   }
   else if (missing_)
   {
     ROS_INFO("misisng");
     // missing_ = ! tracker_->update(image_, roi_);
-    cv::putText(image_, "missing", cv::Point(50,50),
-                cv::FONT_HERSHEY_SIMPLEX, 3, cv::Scalar(0,0,200), 2, CV_AA);
+    cv::putText(image_, "missing", cv::Point(10,300),
+                cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0,0,200), 2, CV_AA);
   }
   image_pub_.publish(cv_bridge::CvImage(header_,
                                         sensor_msgs::image_encodings::BGR8,
