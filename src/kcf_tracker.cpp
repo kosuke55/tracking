@@ -119,6 +119,7 @@ void KcfTracker::callback(const sensor_msgs::Image::ConstPtr& raw_image_msg,
     ci_roi.roi.width = roi_.width;
     ci_roi.roi.height = roi_.height;
     ci_roi.roi.do_rectify = true;
+    ci_roi.header = header_;
     pub_camera_info_.publish(ci_roi);
   }
 }
