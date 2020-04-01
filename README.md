@@ -15,5 +15,5 @@ Kinetic defaults to 3.3.1, so I recommend that.
 `git checkout -b v3.3.1 3.3.1`  
 `mkdir build; cd build`  
 `cmake -DBUILD_opencv_cudacodec=OFF -D CMAKE_INSTALL_PREFIX=/usr/local -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules ..`  
-`make -j$(nproc`  
+`make -j$(nproc)`  
 `make install`  
