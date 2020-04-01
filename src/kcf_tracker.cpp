@@ -90,7 +90,6 @@ void KcfTracker::callback(const sensor_msgs::Image::ConstPtr& raw_image_msg,
                   CV_RGB(0,255,0), 2);
     cv::putText(image_, "redetect", cv::Point(10,200),
                 cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(0,0,200), 2, CV_AA);
-    // missing_ = false;
   }
   else if (! missing_)
   {
