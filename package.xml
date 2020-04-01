@@ -3,7 +3,7 @@
   <name>tracking</name>
   <version>0.1.0</version>
   <description>The tracking package</description>
-  <maintainer email="takeuchi@jsk.imi.i.u-tokyo.ac.jp">kosuke</maintainer>
+  <maintainer email="takuchi@jsk.imi.i.u-tokyo.ac.jp">kosuke</maintainer>
   <license>BSD</license>
 
   <!-- <build_depend>cv_bridge</build_depend> -->
