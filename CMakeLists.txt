@@ -19,11 +19,14 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.3 REQUIRED)
+message("----------------------------")
+message("OPENCV ${OpenCV_VERSION} FOUND IN ${OpenCV_INCLUDE_DIRS}")
 
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library

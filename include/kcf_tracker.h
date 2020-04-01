@@ -17,7 +17,7 @@
 #include <std_msgs/Header.h>
 #include <cv_bridge/cv_bridge.h>
 #include <image_transport/image_transport.h>
-#include <opencv2/tracking/tracker.hpp>
+#include <opencv2/tracking/tracking.hpp>
 #include <opencv2/tracking/tldDataset.hpp>
 #include <jsk_recognition_msgs/RectArray.h>
 
